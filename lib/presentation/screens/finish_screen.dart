@@ -1,3 +1,4 @@
+import 'package:color_quest/application/provider/game_provider.dart';
 import 'package:color_quest/presentation/ui/circle_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,6 +10,7 @@ class FinishScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
     final textTheme = Theme.of(context).textTheme;
+    final score = ref.read(gameProvider.select((value) => value.points));
     return Scaffold(
       body: Container(
         width: size.width,
@@ -32,7 +34,7 @@ class FinishScreen extends ConsumerWidget {
               height: 50,
             ),
             Text(
-              "10",
+              score.toString(),
               style: textTheme.titleLarge?.copyWith(fontSize: size.width * 0.3, fontWeight: FontWeight.w500, height: .8),
             ),
             const SizedBox(
